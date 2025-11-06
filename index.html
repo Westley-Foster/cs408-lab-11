@@ -12,13 +12,10 @@
 
 <body>
     
-    <h1>My Simple Inventory App <button class="load-style" id="load-data">Load Data</button></h1>
+    <h1>My Simple Inventory App <button class="load-style" id="load-data">Load All Items</button></h1>
 
-    <p id="lambda-info">
-        <!-- loaded with AJAX -->
-    </p>
-
-    <table>
+    <!-- Created with help from ChatGPT -->
+    <table class="second-table">
         <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -34,10 +31,60 @@
 
     <hr>
 
+    <!-- <table class="add-data">
+        <thead>
+            <tr>
+                <th class="second-th" colspan="2">Add New Item to Database</th>
+            </tr>
 
+            <tr>
+                <td>
+                    <label for="put-id">ID:</label>
+                    <input type="text" id="put-id" placeholder="Enter ID">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="put-name">Name:</label>
+                    <input type="text" id="put-name" placeholder="Enter name">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="put-price">Price:</label>
+                    <input type="number" id="put-price" placeholder="Enter price">
+                </td>
+            </tr>
+        </thead>
+    </table> -->
+
+    <!-- Replaced table above with code from ChatGPT -->
+    <div class="add-container">
+        <h2>Add New Item to Database</h2>
+        <form class="add-form" id="add-form">
+            <div class="form-row">
+            <label for="put-id">ID:</label>
+            <input type="text" id="put-id" placeholder="Placeholder">
+            </div>
+
+            <div class="form-row">
+            <label for="put-name">Name:</label>
+            <input type="text" id="put-name" placeholder="Placeholder">
+            </div>
+
+            <div class="form-row">
+            <label for="put-price">Price:</label>
+            <input type="number" id="put-price" placeholder="Placeholder">
+            </div>
+
+            <button class="add-item" type="button" id="send-data">Add Item</button>
+        </form>
+    </div>
 
     <!-- Written with help from ChatGPT -->
-    <h3>PUT (Add/Update Item)</h3>
+    <!-- <h3>PUT (Add/Update Item)</h3>
     <label for="put-id">ID:</label>
     <input type="text" id="put-id" placeholder="Enter ID">
 
@@ -48,7 +95,7 @@
     <input type="number" id="put-price" placeholder="Enter price">
     
     <button id="send-data">Send Data</button>
-    <p>Sends a JSON object with the above info</p>
+    <p>Sends a JSON object with the above info</p> -->
 
     <!-- Script written with help from ChatGPT -->
     <!--  PUT Request -->
@@ -82,12 +129,11 @@
         // });
     </script>
 
-    <hr>
-
     <!-- GET Request -->
     <!-- /<h3>GET (load items)</h3> -->
     <!-- <button id="load-data">Load Data</button> -->
-    <p>Loads data from the server</p>
+    <!-- <p>Loads data from the server</p> -->
+     <!-- Written with help from ChatGPT -->
     <script>
         // window.addEventListener("load", function () {
         //     document.getElementById("load-data").addEventListener("click", function () {
@@ -133,7 +179,19 @@
                 const tbody = document.getElementById("lambda-info");
                 tbody.innerHTML = ""; // clear previous table contents
 
+                // data.forEach(item => addRowToTable(item));
+
+                // Sort items by ID (assuming numeric IDs; if string, this still works lexically)
+                data.sort((a, b) => {
+                    // If IDs are numbers
+                    if (!isNaN(a.id) && !isNaN(b.id)) return a.id - b.id;
+                    // Otherwise, compare as strings
+                    return a.id.toString().localeCompare(b.id.toString());
+                });
+
+                // Add sorted rows
                 data.forEach(item => addRowToTable(item));
+
                 } else {
                 alert("Failed to load items.");
                 }
@@ -160,6 +218,7 @@
                 const tdAction = document.createElement("td");
                 const delBtn = document.createElement("button");
                 delBtn.textContent = "Delete";
+                delBtn.classList.add("delete-btn"); // ← add this line
                 delBtn.onclick = function() { deleteItem(item.id, tr); };
                 tdAction.appendChild(delBtn);
 
@@ -171,16 +230,15 @@
             }
     </script>
 
-    <hr>
-
-    <h3>DELETE (Remove Item)</h3>
+    <!-- <h3>DELETE (Remove Item)</h3>
     <label for="delete-id">ID to delete:</label>
     <input type="text" id="delete-id" placeholder="Enter ID">
 
     <button id="delete-data">Delete Data</button>
-    <p>Deletes the item with the specified ID</p>
+    <p>Deletes the item with the specified ID</p> -->
 
     <!-- DELETE Request -->
+    <!-- Written with help from ChatGPT -->
     <script>
         window.addEventListener("load", function () {
             document.getElementById("delete-data").addEventListener("click", function () {
