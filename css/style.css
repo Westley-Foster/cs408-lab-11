@@ -3,8 +3,8 @@ h1 {
 }
 
 body{
+  /* Background image for prettiness */
   background-image: url(../img/star_sky.jpg);
-  /* background-repeat: no-repeat; */
   background-size: cover;
   background-position: center center;
   filter: drop-shadow(5px 5px 10px rgb(0, 0, 0, 0.9));
@@ -162,9 +162,7 @@ label {
 /* Add button styling */
 .add-item {
   position: relative; /* position relative to container */
-  /* bottom: 20px; */
   top: 20px;
-  /* right: 20px; */
   left: 100px;
   padding: 8px 20px;
   border-radius: 6px;
@@ -182,11 +180,11 @@ hr{
   margin-right: auto;
   border: none;
   width: 75%;
-  height: 1px;
-  background-color: black;
+  height: 2px;
+  background-color: rgb(186, 121, 121);
 }
 
-/* Pretty styling */
+/* Pretty styling below */
 .load-style {
   position: relative;
   left: 10px;

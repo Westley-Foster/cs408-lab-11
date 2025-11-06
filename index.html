@@ -31,6 +31,7 @@
 
     <hr>
 
+    <!-- Original table, but it wasn't working -->
     <!-- <table class="add-data">
         <thead>
             <tr>
@@ -60,7 +61,7 @@
         </thead>
     </table> -->
 
-    <!-- Replaced table above with code from ChatGPT -->
+    <!-- Replaced not-working table above with code from ChatGPT -->
     <div class="add-container">
         <h2>Add New Item to Database</h2>
         <form class="add-form" id="add-form">
@@ -83,24 +84,9 @@
         </form>
     </div>
 
+    <!-- PUT Request -->
     <!-- Written with help from ChatGPT -->
-    <!-- <h3>PUT (Add/Update Item)</h3>
-    <label for="put-id">ID:</label>
-    <input type="text" id="put-id" placeholder="Enter ID">
-
-    <label for="put-name">Name:</label>
-    <input type="text" id="put-name" placeholder="Enter name">
-
-    <label for="put-price">Price:</label>
-    <input type="number" id="put-price" placeholder="Enter price">
-    
-    <button id="send-data">Send Data</button>
-    <p>Sends a JSON object with the above info</p> -->
-
-    <!-- Script written with help from ChatGPT -->
-    <!--  PUT Request -->
     <script>
-        // window.addEventListener("load", function () {
             document.getElementById("send-data").addEventListener("click", function () {
                 const id = document.getElementById("put-id").value.trim();
                 const name = document.getElementById("put-name").value.trim();
@@ -111,7 +97,7 @@
                     return;
                 }
 
-                const xhr = new XMLHttpRequest(); //NOTE TO SELF: changed from "let" to "const"
+                const xhr = new XMLHttpRequest();
                 xhr.open("PUT", "https://jdaz69h8pb.execute-api.us-east-2.amazonaws.com/items");
                 xhr.setRequestHeader("Content-Type", "application/json");
 
@@ -126,49 +112,11 @@
                     }
                 };
             });
-        // });
     </script>
 
     <!-- GET Request -->
-    <!-- /<h3>GET (load items)</h3> -->
-    <!-- <button id="load-data">Load Data</button> -->
-    <!-- <p>Loads data from the server</p> -->
-     <!-- Written with help from ChatGPT -->
+    <!-- Written with help from ChatGPT -->
     <script>
-        // window.addEventListener("load", function () {
-        //     document.getElementById("load-data").addEventListener("click", function () {
-        //         const lambda = document.getElementById("lambda-info");
-
-        //         const xhr = new XMLHttpRequest();
-        //         xhr.open("GET", "https://jdaz69h8pb.execute-api.us-east-2.amazonaws.com/items");
-
-        //         xhr.onload = function () {
-        //             if (xhr.status === 200) {
-        //                 const items = JSON.parse(xhr.responseText);
-        //                 lambda.innerHTML = "";
-
-        //                 items.forEach(item => {
-        //                     const row = `
-        //                         <tr>
-        //                             <td>${item.id}</td>
-        //                             <td>${item.name}</td>
-        //                             <td>${item.price}</td>
-        //                             <td><button onclick="deleteItem('${item.id}')">Delete</button></td>
-        //                         </tr>
-        //                     `;
-        //                     lambda.innerHTML += row;
-        //                 });
-        //             } else {
-        //                 lambda.innerHTML = "Error loading data.";
-        //             }
-        //         };
-
-        //         xhr.send();
-        //     });
-        // });
-
-
-
         document.getElementById("load-data").onclick = function() {
             const xhr = new XMLHttpRequest();
             xhr.open("GET", "https://jdaz69h8pb.execute-api.us-east-2.amazonaws.com/items");
@@ -178,8 +126,6 @@
                 const data = JSON.parse(xhr.responseText);
                 const tbody = document.getElementById("lambda-info");
                 tbody.innerHTML = ""; // clear previous table contents
-
-                // data.forEach(item => addRowToTable(item));
 
                 // Sort items by ID (assuming numeric IDs; if string, this still works lexically)
                 data.sort((a, b) => {
@@ -229,13 +175,6 @@
                 tbody.appendChild(tr);
             }
     </script>
-
-    <!-- <h3>DELETE (Remove Item)</h3>
-    <label for="delete-id">ID to delete:</label>
-    <input type="text" id="delete-id" placeholder="Enter ID">
-
-    <button id="delete-data">Delete Data</button>
-    <p>Deletes the item with the specified ID</p> -->
 
     <!-- DELETE Request -->
     <!-- Written with help from ChatGPT -->
